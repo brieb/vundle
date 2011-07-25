@@ -78,7 +78,7 @@ func! s:sync(bang, bundle) abort
       let cmd = '"'.cmd.'"'                          " enclose in quotes
     endif
   else
-    let cmd = 'git clone '.a:bundle.uri.' '.shellescape(a:bundle.path())
+    let cmd = 'git submodule add '.a:bundle.uri.' '.shellescape(a:bundle.path())
   endif
 
   silent exec '!'.cmd
