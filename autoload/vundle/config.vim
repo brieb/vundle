@@ -42,16 +42,16 @@ func! s:parse_name(arg)
   let arg = a:arg
   if    arg =~? '^\s*\(gh\|github\):\S\+'
   \  || arg =~? '^[a-z0-9][a-z0-9-]*/[^/]\+$'
-    let uri = 'https://github.com/'.split(arg, ':')[-1]
+    let uri = 'git://github.com/'.split(arg, ':')[-1]
     let name = substitute(split(uri,'\/')[-1], '\.git\s*$','','i')
   elseif arg =~? '^\s*\(git@\|git://\)\S\+' 
-  \   || arg =~? '\(file\|https\?\)://'
+  \   || arg =~? '\(file\|git\?\)://'
   \   || arg =~? '\.git\s*$'
     let uri = arg
     let name = split( substitute(uri,'/\?\.git\s*$','','i') ,'\/')[-1]
   else
     let name = arg
-    let uri  = 'https://github.com/vim-scripts/'.name.'.git'
+    let uri  = 'git://github.com/vim-scripts/'.name.'.git'
   endif
   return {'name': name, 'uri': uri }
 endf
